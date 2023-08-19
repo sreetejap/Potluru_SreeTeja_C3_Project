@@ -5,8 +5,14 @@ import java.util.List;
 public class RestaurantService {
     private static List<Restaurant> restaurants = new ArrayList<>();
 
-    public Restaurant findRestaurantByName(String restaurantName){
+    public Restaurant findRestaurantByName(String restaurantName) {
+        for(Restaurant r : restaurants){
+            if(r.getName().equals(restaurantName)){
+                return r;
+            }
+        }
         return null;
+
         //DELETE ABOVE STATEMENT AND WRITE CODE HERE
     }
 
@@ -17,10 +23,11 @@ public class RestaurantService {
         return newRestaurant;
     }
 
-    public Restaurant removeRestaurant(String restaurantName) throws restaurantNotFoundException {
+    public void removeRestaurant(String restaurantName) throws restaurantNotFoundException {
         Restaurant restaurantToBeRemoved = findRestaurantByName(restaurantName);
+        if (restaurantToBeRemoved == null)
+            throw new restaurantNotFoundException(restaurantName);
         restaurants.remove(restaurantToBeRemoved);
-        return restaurantToBeRemoved;
     }
 
     public List<Restaurant> getRestaurants() {
