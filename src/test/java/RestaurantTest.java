@@ -5,6 +5,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.spy;
@@ -45,6 +47,21 @@ class RestaurantTest {
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>ORDER<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    @Test
+    public void selected_items_in_the_menu_should_display_correct_total_value(){
+        restaurant.addToMenu("Carbonara",220);
+        restaurant.addToMenu("Ravioli",150);
+        List<String> selected = new ArrayList<>();
+        selected.add("Carbonara");
+        selected.add("Vegetable lasagne");
+        int total = restaurant.displayOrderValueOfSelectedItems(selected);
+        assertEquals(489,total);
+    }
+
+    //<<<<<<<<<<<<<<<<<<<<<<<<<ORDER>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
